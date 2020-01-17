@@ -17,5 +17,5 @@
     contents          text
     status            integer
     priority_order    integer
-    intitial_time_at  datetime
+    initial_time_at  datetime
     finish_time_at    datetime
