@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Require Ruby 2.7.0, Rails 6.0.2.1
+* Table Schema
 
-Things you may want to cover:
+----
+  User
+  account           string
+  name              string
+  password_digest   string
+  is_admin          boolean
 
-* Ruby version
+----
+  Mission
+  user_id           integer
+  title             string
+  contents          text
+  status            integer
+  priority_order    integer
+  intitial_time_at  datetime
+  finish_time_at    datetime
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+----
