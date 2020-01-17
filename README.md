@@ -4,20 +4,20 @@
 * Table Schema
 
 ----
-  User
-  account           string
-  name              string
-  password_digest   string
-  is_admin          boolean
+    User
+    account           string
+    name              string
+    password_digest   string
+    is_admin          boolean
 
 ----
-  Mission
-  user_id           integer
-  title             string
-  contents          text
-  status            integer
-  priority_order    integer
-  intitial_time_at  datetime
-  finish_time_at    datetime
+    Mission
+    user_id           integer
+    title             string
+    contents          text
+    status            integer
+    priority_order    integer
+    intitial_time_at  datetime
+    finish_time_at    datetime
 
 ----
