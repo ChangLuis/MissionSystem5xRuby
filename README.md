@@ -3,7 +3,6 @@
 * Require Ruby 2.7.0, Rails 6.0.2.1
 * Table Schema
 
-----
     User
     account           string
     name              string
@@ -19,5 +18,3 @@
     priority_order    integer
     intitial_time_at  datetime
     finish_time_at    datetime
-
-----
