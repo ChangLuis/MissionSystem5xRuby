@@ -1,0 +1,39 @@
+<% if @mission.errors.any? %>
+  <ul>
+    <% @mission.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end%>
+  </ul>
+<% end %>
+
+<h1>edit your mission</h1>
+
+<%= form_with model: @mission, url: user_mission_path, local: true do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :contents %>
+    <%= f.text_area :contents %>
+  </p>
+  <p>
+    <%= f.label :priority_order %>
+    <%= f.select :priority_order, Mission.priority_orders.keys, include_blank: "choose one" %>
+  </p>
+  <p>
+    <%= f.label :status %>
+    <%= f.select :status, Mission.statuses.keys, include_blank: "choose one" %>
+  </p>
+  <p>
+    <%= f.label :initial_time_at %>
+    <%= f.datetime_field :initial_time_at %>  
+  </p>
+  <p>
+    <%= f.label :finish_time_at %>
+    <%= f.datetime_field :finish_time_at %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
