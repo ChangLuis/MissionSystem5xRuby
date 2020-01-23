@@ -31,6 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+          sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq install chromium-chromedriver
           gem install bundler
           bundle install --jobs 4 --retry 3
 
