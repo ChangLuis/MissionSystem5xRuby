@@ -1,0 +1,43 @@
+name: Rails
+on: push
+
+jobs:
+  build:
+    runs-on: macos
+    
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_DB: mission_system_5xruby_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Ruby 2.7.0
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.7.0
+    - name: Build and test with Rake
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec rake
+    - name: Setup test database
+      env:
+        RAILS_ENV: test
+        PGHOST: localhost
+      run: |
+        cp config/database.ci.yml config/database.yml
+        rake db:create db:migrate
+    - name: Run tests
+      env:
+        PGHOST: localhost
+        PGPORT: ${{ job.services.postgres.ports[5432] }}
+        RAILS_ENV: test
+      run: rspec
