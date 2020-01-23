@@ -19,27 +19,27 @@ jobs:
             --health-retries 5
 
       steps:
-      - uses: actions/checkout@v1
-      - name: Set up Ruby 2.7.0
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.0
-      - name: Build and test with Rake
-        run: |
-          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rake
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-        run: |
-          cp config/database.ci.yml config/database.yml
-          rake db:create db:migrate
-      - name: Run tests
-        env:
-          PGHOST: localhost
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
-          RAILS_ENV: test
-        run: rspec
+        - uses: actions/checkout@v1
+        - name: Set up Ruby 2.7.0
+          uses: actions/setup-ruby@v1
+          with:
+            ruby-version: 2.7.0
+        - name: Build and test with Rake
+          run: |
+            sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+            gem install bundler
+            bundle install --jobs 4 --retry 3
+            bundle exec rake
+        - name: Setup test database
+          env:
+            RAILS_ENV: test
+            PGHOST: localhost
+          run: |
+            cp config/database.ci.yml config/database.yml
+            rake db:create db:migrate
+        - name: Run tests
+          env:
+            PGHOST: localhost
+            PGPORT: ${{ job.services.postgres.ports[5432] }}
+            RAILS_ENV: test
+          run: rspec
