@@ -32,9 +32,13 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'poltergeist'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
 
 group :development do

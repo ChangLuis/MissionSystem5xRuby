@@ -7,6 +7,9 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'capybara/poltergeist'
+# require 'capybara/rails'
+# require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -39,7 +42,33 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
+
+  config.before(:suite) { DatabaseCleaner.clean_with :truncation }
+
+  config.after(:each) do |example|
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) { DatabaseCleaner.clean }
+
+  Capybara.javascript_driver = :poltergeist unless ENV["DRIVER"] == "selenium"
+
+  Capybara.register_driver :poltergeist do |app|
+    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      'goog:chromeOptions': { args: %w[no-sandbox headless disable-gpu window-size=1280,1024 disable-features=VizDisplayCompositor] }
+    )
+    Capybara::Poltergeist::Driver.new(
+      app,
+      js_errors: false,
+      timeout: 15,
+      phantomjs: Phantomjs.path,
+      phantomjs_logger: File.new(Rails.root.join("log/temp.log"), "w"),
+      browser: :chrome,
+      desired_capabilities: capabilities
+    )
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -61,3 +90,5 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+# Capybara.default_driver = :selenium_chrome
