@@ -31,13 +31,6 @@ jobs:
       - name: Install dependencies
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
-          wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          chrome_options = Options()
-          chrome_options.add_argument('--no-sandbox')
-          chrome_options.add_argument('--headless')
-          chrome_options.add_argument('--disable-dev-shm-usage')
-          d = webdriver.Chrome('/home/PycharmProjects/chromedriver',chrome_options=chrome_options)
-          d.get('https://www.google.nl/')
           gem install bundler
           bundle install --jobs 4 --retry 3
 
