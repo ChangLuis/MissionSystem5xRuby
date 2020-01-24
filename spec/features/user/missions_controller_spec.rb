@@ -33,7 +33,7 @@ feature "User/missions" do
   end
 
   context 'destroy mission' do
-    scenario 'destroy should be sucessful' do
+    scenario 'destroy should be sucessful', js: true do
       mission = Mission.find_by title: "Date"
       visit user_mission_path(mission)
       page.accept_alert do
