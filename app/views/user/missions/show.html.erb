@@ -1,4 +1,4 @@
-<h1>show page</h1>
+<h1><%= t "mission_detail" %></h1>
 
 <p>Title: <%= @mission.title %></p>
 
@@ -12,13 +12,13 @@
 
 <p>finish_time: <%= @mission.finish_time_at %></p>
 
-<p><%= link_to "Edit the mission", edit_user_mission_path(params[:id]) %></p>
+<p><%= link_to t("edit_mission"), edit_user_mission_path(params[:id]) %></p>
 
 <p>
   <%= 
-    link_to "remove the mission", user_mission_path,
+    link_to t("destroy_mission"), user_mission_path,
     method: :delete, data: { confirm: "Are you sure?" }
   %>
 </p>
 
-<p><%= link_to "View all missions", user_missions_path %></p>
+<p><%= link_to t("review_missions"), user_missions_path %></p>

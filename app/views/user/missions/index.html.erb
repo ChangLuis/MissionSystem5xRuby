@@ -1,16 +1,16 @@
 <h1>missions list</h1>
 
-<%= link_to "create new mission", new_user_mission_path %>
+<%= link_to t("create_new_mission"), new_user_mission_path %>
 <br /><br/>
 
 <table>
   <tr>
-    <th>順序</th> 
-    <th>任務</th> 
-    <th>狀態</th> 
-    <th>等級</th>
-    <th>開始時間</th>
-    <th>結束時間</th>
+    <th><%= t "missions_idx" %></th> 
+    <th><%= t "mission_title" %></th> 
+    <th><%= t "mission_status" %></th> 
+    <th><%= t "mission_priority_order" %></th>
+    <th><%= t "mission_initial_time_at" %></th>
+    <th><%= t "mission_finish_time_at" %></th>
   </tr>
   <% @missions.each.with_index(1) do |mission, idx| %>
     <tr>
@@ -20,7 +20,7 @@
       <td><%= mission.priority_order %></td>
       <td><%= mission.initial_time_at %></td>
       <td><%= mission.finish_time_at %></td>
-      <td><%= link_to "任務內容", user_mission_path(mission) %></td>
+      <td><%= link_to t("mission_detail"), user_mission_path(mission) %></td>
     </tr>
   <% end %>
 </table>
