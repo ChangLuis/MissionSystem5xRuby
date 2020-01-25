@@ -9,17 +9,28 @@
     priority_order: 等級
     initial_time_at: 開始時間
     finish_time_at: 結束時間
-    create_new: 新增任務
-    edit_file: 編輯任務
-    destroy_file: 刪除任務
     review_all: 查看所有任務
     file_detail: 任務內容
+
+    create:
+      h1: 任務新增
+      btn: 新增任務
+      notice: 任務新增成功
+
+    edit:
+      h1: 任務編輯
+      btn: 編輯任務
+      notice: 任務更新成功
+
+    destroy:
+      btn: 刪除任務
+      notice: 任務刪除成功
     
   activerecord:
     attributes:
       mission:
-        title: 任務名稱
-        contents: 說明內容
+        title: 任務名
+        contents: 內容
         status: 狀態
         priority_order: 等級
         initial_time_at: 開始時間
