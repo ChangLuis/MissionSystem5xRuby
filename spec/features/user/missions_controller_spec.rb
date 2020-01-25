@@ -42,4 +42,17 @@ feature "User/missions" do
       expect(page).to have_content("Destroy successfully!")
     end
   end
+
+  context 'check order of missions with created_time' do
+    let!(:mission1) { create(:mission1) }
+    let!(:mission2) { create(:mission2) }
+    before(:each) { visit user_missions_path }
+    scenario 'should be correct' do
+      expect(page.body.index(mission1.title)).to be < page.body.index(mission2.title)
+    end
+
+    scenario 'should be incorrect' do
+      expect(page.body.index(mission1.title)).not_to be > page.body.index(mission2.title)
+    end
+  end
 end
