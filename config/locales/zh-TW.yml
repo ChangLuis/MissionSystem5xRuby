@@ -1,14 +1,26 @@
 "zh-TW":
-  missions_idx: 順序
-  mission_title: 任務
-  mission_status: 狀態
-  mission_priority_order: 等級
-  mission_initial_time_at: 開始時間
-  mission_finish_time_at: 結束時間
-  mission_contents: 說明
-  create_new_mission: 新增任務
-  edit_mission: 編輯任務
-  destroy_mission: 刪除任務
-  review_missions: 查看所有任務
-  mission_detail: 任務內容
   submit: 確定提交
+
+  mission:
+    idx: 順序
+    title: 任務名稱
+    contents: 說明
+    status: 狀態
+    priority_order: 等級
+    initial_time_at: 開始時間
+    finish_time_at: 結束時間
+    create_new: 新增任務
+    edit_file: 編輯任務
+    destroy_file: 刪除任務
+    review_all: 查看所有任務
+    file_detail: 任務內容
+    
+  activerecord:
+    attributes:
+      mission:
+        title: 任務名稱
+        contents: 說明內容
+        status: 狀態
+        priority_order: 等級
+        initial_time_at: 開始時間
+        finish_time_at: 結束時間
