@@ -1,16 +1,16 @@
 <h1>missions list</h1>
 
-<%= link_to t("create_new_mission"), new_user_mission_path %>
+<%= link_to t("mission.create_new"), new_user_mission_path %>
 <br /><br/>
 
 <table>
   <tr>
-    <th><%= t "missions_idx" %></th> 
-    <th><%= t "mission_title" %></th> 
-    <th><%= t "mission_status" %></th> 
-    <th><%= t "mission_priority_order" %></th>
-    <th><%= t "mission_initial_time_at" %></th>
-    <th><%= t "mission_finish_time_at" %></th>
+    <th><%= t "mission.idx" %></th> 
+    <th><%= t "mission.title" %></th> 
+    <th><%= t "mission.status" %></th> 
+    <th><%= t "mission.priority_order" %></th>
+    <th><%= t "mission.initial_time_at" %></th>
+    <th><%= t "mission.finish_time_at" %></th>
   </tr>
   <% @missions.each.with_index(1) do |mission, idx| %>
     <tr>
@@ -20,7 +20,7 @@
       <td><%= mission.priority_order %></td>
       <td><%= mission.initial_time_at %></td>
       <td><%= mission.finish_time_at %></td>
-      <td><%= link_to t("mission_detail"), user_mission_path(mission) %></td>
+      <td><%= link_to t("mission.file_detail"), user_mission_path(mission) %></td>
     </tr>
   <% end %>
 </table>

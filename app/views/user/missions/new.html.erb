@@ -6,31 +6,31 @@
   </ul>
 <% end %>
 
-<h1><%= t "create_new_mission" %></h1>
+<h1><%= t "mission.create_new" %></h1>
 
 <%= form_with model: @mission, url: user_missions_path, local: true do |f| %>
   <p>
-    <%= f.label :title, t("mission_title") %>
+    <%= f.label :title, t("mission.title") %>
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :contents, t("mission_contents") %>
+    <%= f.label :contents, t("mission.contents") %>
     <%= f.text_area :contents %>
   </p>
   <p>
-    <%= f.label :priority_order, t("mission_priority_order") %>
+    <%= f.label :priority_order, t("mission.priority_order") %>
     <%= f.select :priority_order, Mission.priority_orders.keys, include_blank: "choose one" %>
   </p>
   <p>
-    <%= f.label :status, t("mission_status") %>
+    <%= f.label :status, t("mission.status") %>
     <%= f.select :status, Mission.statuses.keys, include_blank: "choose one" %>
   </p>
   <p>
-    <%= f.label :initial_time_at, t("mission_initial_time_at") %>
+    <%= f.label :initial_time_at, t("mission.initial_time_at") %>
     <%= f.datetime_field :initial_time_at %>  
   </p>
   <p>
-    <%= f.label :finish_time_at, t("mission_finish_time_at") %>
+    <%= f.label :finish_time_at, t("mission.finish_time_at") %>
     <%= f.datetime_field :finish_time_at %>
   </p>
   <p>
