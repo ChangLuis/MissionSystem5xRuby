@@ -5,14 +5,14 @@ feature "User/missions" do
     scenario 'creation should be successful' do
       visit new_user_mission_path
       within('form') do
-        fill_in 'Title', with: "Date"
-        fill_in 'Contents', with: "dating with alison around taipei city."
-        select "high_priority", from: 'Priority order'
-        select "pending", from: 'Status'
-        fill_in 'Initial time at', with: "2020-01-23 08:00".to_datetime
-        fill_in 'Finish time at', with: "2020-01-23 22:00".to_datetime
+        fill_in I18n.t('mission_title'), with: "Date"
+        fill_in I18n.t('mission_contents'), with: "dating with alison around taipei city."
+        select "high_priority", from: I18n.t('mission_priority_order')
+        select "pending", from: I18n.t('mission_status')
+        fill_in I18n.t('mission_initial_time_at'), with: "2020-01-23 08:00".to_datetime
+        fill_in I18n.t('mission_finish_time_at'), with: "2020-01-23 22:00".to_datetime
       end
-      click_button 'Create Mission'
+      click_button I18n.t('submit')
       expect(page).to have_content("Create sucessfully!")
     end
   end
@@ -22,10 +22,10 @@ feature "User/missions" do
       mission = Mission.find_by title: "Date"
       visit edit_user_mission_path(mission)
       within('form') do
-        fill_in 'Initial time at', with: "2020-01-24 08:00".to_datetime
-        fill_in 'Finish time at', with: "2020-01-24 22:00".to_datetime
+        fill_in I18n.t('mission_initial_time_at'), with: "2020-01-24 08:00".to_datetime
+        fill_in I18n.t('mission_finish_time_at'), with: "2020-01-24 22:00".to_datetime
       end
-      click_button 'Update Mission'
+      click_button I18n.t('submit')
       expect(page).to have_content("Update successfully!")
       expect(page).to have_content(Date.parse("2020-01-24 08:00"))
       expect(page).to have_content(Date.parse("2020-01-24 22:00"))
@@ -37,7 +37,7 @@ feature "User/missions" do
       mission = Mission.find_by title: "Date"
       visit user_mission_path(mission)
       page.accept_alert do
-        click_link 'remove the mission'
+        click_link I18n.t("destroy_mission")
       end
       expect(page).to have_content("Destroy successfully!")
     end
