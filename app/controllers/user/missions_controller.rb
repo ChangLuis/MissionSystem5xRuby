@@ -11,7 +11,7 @@ class User::MissionsController < ApplicationController
     @mission = Mission.new mission_params
     @mission.user_id = 1
     if @mission.save
-      redirect_to user_missions_path, notice: "Create sucessfully!"
+      redirect_to user_missions_path, notice: t('mission.create.notice')
     else
       render :new
     end
@@ -28,7 +28,7 @@ class User::MissionsController < ApplicationController
   def update
     @mission = Mission.find params[:id]
     if @mission.update mission_params
-      redirect_to user_missions_path, notice: "Update successfully!"
+      redirect_to user_missions_path, notice: t('mission.edit.notice')
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class User::MissionsController < ApplicationController
   def destroy
     @mission = Mission.find params[:id]
     @mission.destroy
-    redirect_to user_missions_path, notice: "Destroy successfully!"
+    redirect_to user_missions_path, notice: t('mission.destroy.notice')
   end
 
   private
