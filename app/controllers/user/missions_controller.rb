@@ -1,6 +1,6 @@
 class User::MissionsController < ApplicationController
   def index
-    @missions = Mission.all
+    @missions = Mission.order(created_at: :ASC)
   end
 
   def new
