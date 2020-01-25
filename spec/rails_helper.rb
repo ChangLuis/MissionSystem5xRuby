@@ -8,6 +8,7 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/poltergeist'
+require 'support/macros/i18n_macros'
 # require 'capybara/rails'
 # require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -71,7 +72,7 @@ RSpec.configure do |config|
   end
 
   config.include FactoryBot::Syntax::Methods
-
+  config.include I18nMacros
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
