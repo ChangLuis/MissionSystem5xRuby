@@ -12,11 +12,11 @@
 
 <p>finish_time: <%= @mission.finish_time_at %></p>
 
-<p><%= link_to t("mission.edit_file"), edit_user_mission_path(params[:id]) %></p>
+<p><%= link_to t("mission.edit.btn"), edit_user_mission_path(params[:id]) %></p>
 
 <p>
   <%= 
-    link_to t("mission.destroy_file"), user_mission_path,
+    link_to t("mission.destroy.btn"), user_mission_path,
     method: :delete, data: { confirm: "Are you sure?" }
   %>
 </p>

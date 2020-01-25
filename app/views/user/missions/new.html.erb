@@ -6,31 +6,31 @@
   </ul>
 <% end %>
 
-<h1><%= t "mission.create_new" %></h1>
+<h1><%= t "mission.create.h1" %></h1>
 
 <%= form_with model: @mission, url: user_missions_path, local: true do |f| %>
   <p>
-    <%= f.label :title, t("mission.title") %>
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :contents, t("mission.contents") %>
+    <%= f.label :contents %>
     <%= f.text_area :contents %>
   </p>
   <p>
-    <%= f.label :priority_order, t("mission.priority_order") %>
+    <%= f.label :priority_order %>
     <%= f.select :priority_order, Mission.priority_orders.keys, include_blank: "choose one" %>
   </p>
   <p>
-    <%= f.label :status, t("mission.status") %>
+    <%= f.label :status %>
     <%= f.select :status, Mission.statuses.keys, include_blank: "choose one" %>
   </p>
   <p>
-    <%= f.label :initial_time_at, t("mission.initial_time_at") %>
+    <%= f.label :initial_time_at %>
     <%= f.datetime_field :initial_time_at %>  
   </p>
   <p>
-    <%= f.label :finish_time_at, t("mission.finish_time_at") %>
+    <%= f.label :finish_time_at %>
     <%= f.datetime_field :finish_time_at %>
   </p>
   <p>
