@@ -30,7 +30,7 @@
 
 ## Heroku Deploy steps
 
-* Install heroku toobelt
+* Install heroku toolbelt
 * Check version of heroku
 
 ```bash
