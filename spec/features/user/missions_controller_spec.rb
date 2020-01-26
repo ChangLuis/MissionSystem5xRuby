@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "User/missions" do
-  context 'create new mission' do
+  context 'Create new mission' do
     scenario 'creation should be successful' do
       visit new_user_mission_path
       within('form') do
@@ -17,7 +17,7 @@ feature "User/missions" do
     end
   end
 
-  context 'update mission' do
+  context 'Update mission' do
     scenario 'updating should be successful' do
       mission = Mission.find_by title: "Date"
       visit edit_user_mission_path(mission)
@@ -32,7 +32,7 @@ feature "User/missions" do
     end
   end
 
-  context 'destroy mission' do
+  context 'Destroy mission' do
     scenario 'destroy should be sucessful', js: true do
       mission = Mission.find_by title: "Date"
       visit user_mission_path(mission)
@@ -43,16 +43,30 @@ feature "User/missions" do
     end
   end
 
-  context 'check order of missions with created_time' do
+  describe 'Check order logic of missions' do
     let!(:mission1) { create(:mission1) }
     let!(:mission2) { create(:mission2) }
     before(:each) { visit user_missions_path }
-    scenario 'should be correct' do
-      expect(body.index(mission1.title)).to be < body.index(mission2.title)
+
+    context 'with created_time' do
+      scenario 'should be correct' do
+        expect(body.index(mission1.title)).to be < body.index(mission2.title)
+      end
+
+      scenario 'should be incorrect' do
+        expect(body.index(mission1.title)).not_to be > body.index(mission2.title)
+      end
     end
 
-    scenario 'should be incorrect' do
-      expect(body.index(mission1.title)).not_to be > body.index(mission2.title)
+    context 'with finish_time' do
+      before(:each) { click_link t('mission.finish_time_at') }
+      scenario 'should be correct' do
+        expect(body.index(mission1.title)).to be > body.index(mission2.title)
+      end
+
+      scenario 'should be incorrect' do
+        expect(body.index(mission1.title)).not_to be < body.index(mission2.title)
+      end
     end
   end
 end
