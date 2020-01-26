@@ -4,13 +4,18 @@
 * Table Schema
 
 ----
+
+```bash
     User
     account           string
     name              string
     password_digest   string
     is_admin          boolean
+```
 
 ----
+
+```bash
     Mission
     user_id           integer
     title             string
@@ -19,32 +24,45 @@
     priority_order    integer
     initial_time_at   datetime
     finish_time_at    datetime
+```
 
 ----
 
-* Heroku Deploy steps
+## Heroku Deploy steps
 
-1. Install heroku toobelt
-2. Check version of heroku
+* Install heroku toobelt
+* Check version of heroku
 
+```bash
     heroku -v
+```
 
-3. Heroku login
+* Heroku login
 
+```bash
     heroku login
+```
 
-4. Create local heroku
+* Create local heroku
 
+```bash
     heroku create
+```
 
-5. Add SSH key of Project to heroku
+* Add SSH key of Project to heroku
 
+```bash
     heroku keys:add
+```
 
-6. Push project to heroku
+* Push project to heroku
 
+```bash
     git push heroku master
+```
 
-7. Migrate rails db on heroku
+* Migrate rails db on heroku
 
+```bash
     heroku run rails db:migrate
+```
