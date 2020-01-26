@@ -10,7 +10,7 @@
     <th><%= t "mission.status" %></th> 
     <th><%= t "mission.priority_order" %></th>
     <th><%= t "mission.initial_time_at" %></th>
-    <th><%= t "mission.finish_time_at" %></th>
+    <th><%= link_to t("mission.finish_time_at"), user_order_change_path(:finish_time) %></th>
   </tr>
   <% @missions.each.with_index(1) do |mission, idx| %>
     <tr>
