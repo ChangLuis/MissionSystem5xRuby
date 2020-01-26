@@ -1,6 +1,7 @@
 class User::MissionsController < ApplicationController
   def index
     @missions = Mission.order(created_at: :ASC)
+    @missions = Mission.order(finish_time_at: :ASC) if params[:order_change]
   end
 
   def new
