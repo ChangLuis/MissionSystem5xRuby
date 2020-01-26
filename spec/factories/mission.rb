@@ -6,7 +6,7 @@ FactoryBot.define do
     status { "pending" }
     priority_order { "high_priority" }
     initial_time_at { "2020-01-23 08:00".to_datetime }
-    finish_time_at { "2020-01-23 22:00".to_datetime }
+    finish_time_at { "2020-01-31 22:00".to_datetime }
   end
 
   factory :mission2, class: "Mission" do
@@ -15,7 +15,7 @@ FactoryBot.define do
     contents { "Meeting with 5xRuby" }
     status { "pending" }
     priority_order { "high_priority" }
-    initial_time_at { "2020-01-31 17:00".to_datetime }
-    finish_time_at { "2020-01-31 22:00".to_datetime }
+    initial_time_at { "2020-01-25 17:00".to_datetime }
+    finish_time_at { "2020-01-25 22:00".to_datetime }
   end
 end
