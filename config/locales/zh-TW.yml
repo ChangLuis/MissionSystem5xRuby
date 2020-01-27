@@ -1,5 +1,6 @@
 "zh-TW":
   submit: 確定提交
+  submit_with_search: 搜尋
 
   mission:
     idx: 順序
