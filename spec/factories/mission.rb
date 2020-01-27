@@ -3,8 +3,8 @@ FactoryBot.define do
     user_id { 1 }
     title { "Date" }
     contents { "Dating with 5xRuby" }
-    status { "pending" }
-    priority_order { "high_priority" }
+    status { "finish" }
+    priority_order { "nomal_priority" }
     initial_time_at { "2020-01-23 08:00".to_datetime }
     finish_time_at { "2020-01-31 22:00".to_datetime }
   end
