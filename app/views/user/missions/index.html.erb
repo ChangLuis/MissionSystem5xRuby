@@ -3,14 +3,24 @@
 <%= link_to t("mission.create.btn"), new_user_mission_path %>
 <br /><br/>
 
+<%= search_form_for @search, url: user_missions_path do |f| %>
+  <%= f.label :title_cont %>
+  <%= f.search_field :title_cont %>
+
+  <%= f.label :status_eq %>
+  <%= f.select :status_eq, options_for_select(Mission.statuses.map { |k, v| [k, v] }), include_blank: "choose one" %>
+
+  <%= f.submit t("submit_with_search") %>
+<% end %>
+
 <table>
   <tr>
     <th><%= t "mission.idx" %></th> 
     <th><%= t "mission.title" %></th> 
     <th><%= t "mission.status" %></th> 
-    <th><%= t "mission.priority_order" %></th>
+    <th><%= sort_link(@search, :priority_order, t("mission.priority_order"), default_order: :ASC) %></th>
     <th><%= t "mission.initial_time_at" %></th>
-    <th><%= link_to t("mission.finish_time_at"), user_order_change_path(:finish_time) %></th>
+    <th><%= sort_link(@search, :finish_time_at, t("mission.finish_time_at"), default_order: :ASC) %></th>
   </tr>
   <% @missions.each.with_index(1) do |mission, idx| %>
     <tr>
