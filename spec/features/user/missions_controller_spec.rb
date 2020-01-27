@@ -68,5 +68,48 @@ feature "User/missions" do
         expect(body.index(mission1.title)).not_to be < body.index(mission2.title)
       end
     end
+
+    context 'with priority_order' do
+      before(:each) { click_link t('mission.priority_order') }
+      scenario 'should be correct' do
+        expect(body.index(mission1.title)).to be < body.index(mission2.title)
+      end
+
+      scenario 'should be incorrect' do
+        expect(body.index(mission1.title)).not_to be > body.index(mission2.title)
+      end
+    end
+  end
+
+  describe 'Check search index' do
+    let!(:mission) { create(:mission2) }
+    before(:each) { visit user_missions_path }
+    context 'Search with title of mission' do
+      scenario 'should be correct' do
+        fill_in t('activerecord.attributes.mission.title'), with: "m"
+        click_button t('submit_with_search')
+        expect(page).to have_content("Meeting")
+      end
+
+      scenario 'should be incorrect' do
+        fill_in t('activerecord.attributes.mission.title'), with: "D"
+        click_button t('submit_with_search')
+        expect(page).not_to have_content("Meeting")
+      end
+    end
+
+    context 'Search with status of mission' do
+      scenario 'should be correct' do
+        select "pending", from: t('activerecord.attributes.mission.status')
+        click_button t('submit_with_search')
+        expect(page).to have_content("Meeting")
+      end
+
+      scenario 'should be incorrect' do
+        select "finish", from: t('activerecord.attributes.mission.status')
+        click_button t('submit_with_search')
+        expect(page).not_to have_content("Meeting")
+      end
+    end
   end
 end
