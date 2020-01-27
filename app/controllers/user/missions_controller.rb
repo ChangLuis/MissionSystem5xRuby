@@ -1,7 +1,8 @@
 class User::MissionsController < ApplicationController
   def index
+    @search = Mission.ransack(params[:q])
     @missions = Mission.order(created_at: :ASC)
-    @missions = Mission.order(finish_time_at: :ASC) if params[:order_change]
+    @missions = @search.result if params[:q]
   end
 
   def new
