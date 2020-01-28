@@ -35,3 +35,9 @@
         priority_order: 等級
         initial_time_at: 開始時間
         finish_time_at: 結束時間
+      
+      user:
+        account: 帳號
+        name: 姓名
+        password_digest: 密碼
+        is_admin: 管理員身份
