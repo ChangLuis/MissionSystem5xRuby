@@ -1,8 +1,8 @@
 class User::MissionsController < ApplicationController
   def index
     @search = Mission.ransack(params[:q])
-    @missions = Mission.order(created_at: :ASC)
-    @missions = @search.result if params[:q]
+    @missions = params[:q] ? @search.result : Mission.order(created_at: :ASC)
+    @pagy, @missions = pagy(@missions)
   end
 
   def new
