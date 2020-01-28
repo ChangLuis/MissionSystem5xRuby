@@ -3,7 +3,6 @@
   submit_with_search: 搜尋
 
   mission:
-    idx: 順序
     title: 任務名稱
     contents: 說明
     status: 狀態
