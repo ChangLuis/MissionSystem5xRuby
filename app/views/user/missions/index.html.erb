@@ -15,16 +15,14 @@
 
 <table>
   <tr>
-    <th><%= t "mission.idx" %></th> 
     <th><%= t "mission.title" %></th> 
     <th><%= t "mission.status" %></th> 
     <th><%= sort_link(@search, :priority_order, t("mission.priority_order"), default_order: :ASC) %></th>
     <th><%= t "mission.initial_time_at" %></th>
     <th><%= sort_link(@search, :finish_time_at, t("mission.finish_time_at"), default_order: :ASC) %></th>
   </tr>
-  <% @missions.each.with_index(1) do |mission, idx| %>
+  <% @missions.each do |mission| %>
     <tr>
-      <td><%= idx %></td>
       <td><%= mission.title %></td>
       <td><%= mission.status %></td>
       <td><%= mission.priority_order %></td>
@@ -34,3 +32,4 @@
     </tr>
   <% end %>
 </table>
+<%== pagy_nav(@pagy) %>
