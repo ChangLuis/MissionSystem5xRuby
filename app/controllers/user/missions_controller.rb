@@ -1,8 +1,10 @@
-class User::MissionsController < ApplicationController
+class User::MissionsController < User::BaseController
+  before_action :set_mission, except: [:index, :new, :create]
+
   def index
-    @search = Mission.ransack(params[:q])
-    @missions = params[:q] ? @search.result : Mission.order(created_at: :ASC)
-    @pagy, @missions = pagy(@missions)
+    @search = fetch_missions.ransack params[:q]
+    @missions = params[:q] ? @search.result : fetch_missions
+    @pagy, @missions = pagy @missions
   end
 
   def new
@@ -11,7 +13,7 @@ class User::MissionsController < ApplicationController
 
   def create
     @mission = Mission.new mission_params
-    @mission.user_id = 1
+    @mission.user_id = session[:user_id]
     if @mission.save
       redirect_to user_missions_path, notice: t('mission.create.notice')
     else
@@ -19,16 +21,11 @@ class User::MissionsController < ApplicationController
     end
   end
 
-  def show
-    @mission = Mission.find params[:id]
-  end
+  def show; end
 
-  def edit
-    @mission = Mission.find params[:id]
-  end
+  def edit; end
 
   def update
-    @mission = Mission.find params[:id]
     if @mission.update mission_params
       redirect_to user_missions_path, notice: t('mission.edit.notice')
     else
@@ -37,7 +34,6 @@ class User::MissionsController < ApplicationController
   end
 
   def destroy
-    @mission = Mission.find params[:id]
     @mission.destroy
     redirect_to user_missions_path, notice: t('mission.destroy.notice')
   end
@@ -48,5 +44,13 @@ class User::MissionsController < ApplicationController
     params.require(:mission).permit(
       :title, :contents, :status, :priority_order, :initial_time_at, :finish_time_at
     )
+  end
+
+  def set_mission
+    @mission = Mission.find params[:id]
+  end
+
+  def fetch_missions
+    Mission.get_list session[:user_id]
   end
 end
