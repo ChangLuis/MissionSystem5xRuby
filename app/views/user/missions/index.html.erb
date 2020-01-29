@@ -2,6 +2,8 @@
 
 <%= link_to t("mission.create.btn"), new_user_mission_path %>
 <br /><br/>
+<%= link_to "log out", logout_path, method: :delete %>
+<br />
 
 <%= search_form_for @search, url: user_missions_path do |f| %>
   <%= f.label :title_cont %>
