@@ -1,4 +1,6 @@
 class Mission < ApplicationRecord
+  default_scope { order(created_at: :ASC) }
+
   enum status: { pending: 0, processing: 1, finish: 2 }
   enum priority_order: { low_priority: -1, nomal_priority: 0, high_priority: 1 }
 
@@ -9,4 +11,6 @@ class Mission < ApplicationRecord
   validates :priority_order, presence: true
   validates :initial_time_at, presence: true
   validates :finish_time_at, presence: true
+
+  scope :get_list, ->(uid) { where(user_id: uid) }
 end
