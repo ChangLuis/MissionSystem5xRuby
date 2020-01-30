@@ -1,0 +1,28 @@
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end%>
+  </ul>
+<% end %>
+
+<h1>edit user</h1>
+
+<%= form_with model: @user, url: admin_user_path, local: true do |f| %>
+  <%= f.label :account %>
+  <%= f.text_field :account %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.radio_button :is_admin, true %>
+  <%= f.label :is_admin, "Admin Role" %>
+
+  <%= f.radio_button :is_admin, false, checked: true %>
+  <%= f.label :is_admin, "User Role" %>
+
+  <%= f.submit %>
+<% end %>
