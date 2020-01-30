@@ -25,7 +25,12 @@
     destroy:
       btn: 刪除任務
       notice: 任務刪除成功
-    
+  
+  user:
+    account: 帳號
+    name: 姓名
+    missions_count: 任務數量
+
   activerecord:
     attributes:
       mission:
