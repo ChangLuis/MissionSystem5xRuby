@@ -8,9 +8,9 @@
 
 <p>Priority: <%= @mission.priority_order %></p>
 
-<p>initial_time: <%= @mission.initial_time_at %></p>
+<p>initial_time: <%= format_datetime(@mission.initial_time_at) %></p>
 
-<p>finish_time: <%= @mission.finish_time_at %></p>
+<p>finish_time: <%= format_datetime(@mission.finish_time_at) %></p>
 
 <p><%= link_to t("mission.edit.btn"), edit_user_mission_path(params[:id]) %></p>
 
