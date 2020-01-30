@@ -27,7 +27,7 @@ class User::MissionsController < User::BaseController
 
   def update
     if @mission.update mission_params
-      redirect_to user_missions_path, notice: t('mission.edit.notice')
+      redirect_to user_mission_path(@mission), notice: t('mission.edit.notice')
     else
       render :edit
     end
