@@ -40,6 +40,8 @@ group :development, :test do
   gem 'faker'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
   gem 'poltergeist'
+  gem 'pry'
+  gem 'rack_session_access'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
