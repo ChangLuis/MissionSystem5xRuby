@@ -8,4 +8,9 @@ Rails.application.routes.draw do
     resources :missions
     get 'missions/sort/:order_change', to: 'missions#index', as: 'order_change'
   end
+
+  namespace :admin do
+    root 'users#index'
+    resources :users, except: :index
+  end
 end
