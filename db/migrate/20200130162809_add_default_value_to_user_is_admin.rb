@@ -1,5 +1,5 @@
 class AddDefaultValueToUserIsAdmin < ActiveRecord::Migration[6.0]
   def change
-    change_column(:users, :is_admin, :boolean, default: false, null: false)
+    change_column_default(:users, :is_admin, from: nil, to: false)
   end
 end
