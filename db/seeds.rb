@@ -21,3 +21,4 @@ if Mission.all.count.zero?
 end
 
 User.create(account: "changluis", name: "ChangLuis", password: "20190508")
+User.create(account: "admin", name: "Adminstrator", password: "20190508", is_admin: true)
