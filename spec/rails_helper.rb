@@ -9,6 +9,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/poltergeist'
 require 'support/macros/i18n_macros'
+require "rack_session_access/capybara"
 # require 'capybara/rails'
 # require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -47,12 +48,26 @@ RSpec.configure do |config|
 
   config.before(:suite) { DatabaseCleaner.clean_with :truncation }
 
-  config.after(:each) do |example|
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+  config.before(:each) do
+    # DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end
 
-  config.after(:each) { DatabaseCleaner.clean }
+  config.before(:each, type: :feature) do
+    # :rack_test driver's Rack app under test shares database connection
+    # with the specs, so continue to use transaction strategy for speed.
+    driver_shares_db_connection_with_specs = Capybara.current_driver == :rack_test
+
+    unless driver_shares_db_connection_with_specs
+      # Driver is probably for an external browser with an app
+      # under test that does *not* share a database connection with the
+      # specs, so use truncation strategy.
+      DatabaseCleaner.strategy = :truncation
+    end
+  end
+
+  config.append_after(:each) { DatabaseCleaner.clean }
 
   Capybara.javascript_driver = :poltergeist unless ENV["DRIVER"] == "selenium"
 
@@ -100,4 +115,5 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
 # Capybara.default_driver = :selenium_chrome
