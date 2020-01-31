@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      redirect_to admin_root_path, notice: "人員更新成功"
+      redirect_to login_path, notice: "人員更新成功"
     else
       render :edit
     end
