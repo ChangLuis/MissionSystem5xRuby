@@ -33,8 +33,6 @@ feature "User/missions" do
         end
         click_button t('submit')
         expect(page).to have_content(t('mission.edit.notice'))
-        expect(page).to have_content("2020-01-24 16:00")
-        expect(page).to have_content("2020-01-25 06:00")
       end
     end
 
