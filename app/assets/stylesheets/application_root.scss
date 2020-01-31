@@ -1,0 +1,67 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+.navbar {
+  background-color: rgb(46, 155, 238) !important;
+  border-radius: 8px;
+}
+
+.center {
+  text-align: center;
+}
+
+.title-fixed {
+  letter-spacing: -1px;
+}
+
+.user-message {
+  font-size: 1.2em;
+}
+
+.margin-fixed {
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.jumbotron {
+  background-image: asset-url('MissionSystem5xRuby.jpeg');
+  background-size: cover;
+  height: 600px;
+}
+
+.jumbotron h1 {
+  color: rgb(255, 242, 95);
+  text-align: center;
+  margin-top:87px;
+  letter-spacing: -1.5px;
+  font-weight: bold;
+  text-shadow: 0px 0px 5px #000;
+}
+
+#display-user-name {
+  display: inline-block;
+}
+
+#logo {
+  font-size: 1.8em;
+  color: #FFF;
+  letter-spacing: -1px;
+}
+
+#logo:hover {
+  color: #4F4F4f;
+}
+
+#logout:hover {
+  color: white;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a:hover {
+  color: #222;
+}
