@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  require "system_definition"
   include Pagy::Backend
   helper_method :current_user, :logged_in?
 
