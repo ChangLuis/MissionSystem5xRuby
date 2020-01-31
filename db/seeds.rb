@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if Mission.all.count.zero?
-  100.times do
+  500.times do
     Mission.create(
       user_id: Faker::Number.within(range: 1..10),
       title: Faker::Name.initials(number: 5),
