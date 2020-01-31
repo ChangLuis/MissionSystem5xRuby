@@ -1,37 +1,73 @@
-<h1>missions list</h1>
+<h1 class='center'>missions list</h1>
 
-<%= link_to t("mission.create.btn"), new_user_mission_path %>
+<%= link_to t("mission.create.btn"), new_user_mission_path, class: "btn btn-primary rounded-pill"%>
 <br /><br/>
-<%= link_to "log out", logout_path, method: :delete %>
-<br />
 
-<%= search_form_for @search, url: user_missions_path do |f| %>
-  <%= f.label :title_cont %>
-  <%= f.search_field :title_cont %>
+<%= search_form_for @search, url: user_missions_path, class: "form-row align-items-center" do |f| %>
+  <%= f.label :title_cont,  class: "hidden" %>
+  <div class="col-7">
+    <%= f.search_field :title_cont, placeholder: t("mission.title"), class: "form-control form-control-sm" %>
+  </div>
 
-  <%= f.label :status_eq %>
-  <%= f.select :status_eq, options_for_select(Mission.statuses.map { |k, v| [k, v] }), include_blank: "choose one" %>
+  <%= f.label :status_eq, class: "hidden" %>
+  <div class="col-1">
+    <%= f.select :status_eq, options_for_select(Mission.statuses.map { |k, v| [k, v] }),
+        include_blank: t("mission.status"), class: "form-control form-control-sm"
+    %>
+  </div>
 
-  <%= f.submit t("submit_with_search") %>
+  <div class="col-2 ml-4">
+    <%= f.submit t("submit_with_search"), class: "btn btn-outline-info btn-sm rounded-pill" %>
+  </div>
 <% end %>
 
-<table>
-  <tr>
-    <th><%= t "mission.title" %></th> 
-    <th><%= t "mission.status" %></th> 
-    <th><%= sort_link(@search, :priority_order, t("mission.priority_order"), default_order: :ASC) %></th>
-    <th><%= t "mission.initial_time_at" %></th>
-    <th><%= sort_link(@search, :finish_time_at, t("mission.finish_time_at"), default_order: :ASC) %></th>
-  </tr>
-  <% @missions.each do |mission| %>
+<div class="form-group row" id="users-mission-title-fixed">
+	<div	class="col-md-2 offset-md-10">
+		<span>MissionCounts:</span> 
+		<span style="font-size:2em"><%= @missions.count %></span>
+	</div>
+</div>
+
+<table class="table table-hover table-sm shadow-none p-3 mb-5 bg-light rounded rounded-pill center text-monospace">
+  <thead>
     <tr>
-      <td><%= mission.title %></td>
-      <td><%= mission.status %></td>
-      <td><%= mission.priority_order %></td>
-      <td><%= mission.initial_time_at %></td>
-      <td><%= mission.finish_time_at %></td>
-      <td><%= link_to t("mission.file_detail"), user_mission_path(mission) %></td>
+      <th scope="col">
+        <%= t "mission.title" %>
+      </th>
+      
+      <th scope="col">
+        <%= t "mission.status" %>
+      </th>
+
+      <th scope="col">
+          <%= sort_link(@search, :priority_order, t("mission.priority_order"), default_order: :ASC) %>
+      </th>
+
+      <th scope="col">
+        <%= t "mission.initial_time_at" %>
+      </th>
+      
+      <th scope="col">
+        <%= sort_link(@search, :finish_time_at, t("mission.finish_time_at"), default_order: :ASC) %>
+      </th>
+      
+      <th scope="col"></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+		<% @missions.each do |mission| %>
+      <tr>
+        <td scope="row"><%= mission.title %></td>
+        <td scope="row"><%= mission.status %></td>
+        <td scope="row"><%= mission.priority_order %></td>
+        <td scope="row"><%= format_datetime(mission.initial_time_at) %></td>
+        <td scope="row"><%= format_datetime(mission.finish_time_at) %></td>
+        <td scope="row"><%= link_to t("mission.file_detail"), user_mission_path(mission), class: "badge badge-pill badge-warning" %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-<%== pagy_nav(@pagy) %>
+
+<div class="d-flex justify-content-center">
+  <%== pagy_nav(@pagy) %>
+</div>

@@ -1,0 +1,55 @@
+<%= form_with model: @mission, url: obj, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :title, class: "col-md-2 col-form-lable offset-md-2 text-monospace" %>
+    <div class="col-md-9 offset-md-2">
+      <%= f.text_field :title, placeholder: "Title must exist", class: "form-control" %>
+    </div>
+  </div>
+
+	<div class="form-group">
+		<%= f.label :contents, class: "col-md-2 col-form-label offset-md-2 text-monospace" %>
+		<div class="col-md-9 offset-md-2">
+			<%= f.text_area :contents, placeholder: "Contents must exist", class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :priority_order, class: "col-md-2 col-form-label offset-md-2 text-monospace" %>
+		<div class="col-md-9 offset-md-2">
+			<%= f.select :priority_order, Mission.priority_orders.keys, include_blank: "choose one" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :status, class: "col-md-2 col-form-label offset-md-2 text-monospace" %>
+		<div class="col-md-9 offset-md-2">
+			<%= f.select :status, Mission.statuses.keys, include_blank: "choose one" %>
+		</div>
+	</div>
+
+  <div class="form-group">
+		<%= f.label :initial_time_at, class: "col-md-2 col-form-label offset-md-2 text-monospace" %>
+		<div class="col-md-9 offset-md-2">
+			<%= f.datetime_field :initial_time_at %>
+		</div>
+	</div>
+
+  <div class="form-group">
+		<%= f.label :finish_time_at, class: "col-md-2 col-form-label offset-md-2 text-monospace" %>
+		<div class="col-md-9 offset-md-2">
+			<%= f.datetime_field :finish_time_at %>
+		</div>
+	</div>
+
+	<div class="form-group row align-items-center d-flex justify-content-center">
+		<div class="col-auto">
+			<%= f.submit t("submit"), class: "btn btn-primary rounded-pill", data: { disable_with: "Confirming..." } %>
+		</div>
+  </div>
+<% end %>
+
+<div class="form-group row align-items-center d-flex justify-content-center text-monospace">
+		<div class="col-auto mt-4">
+			<%= link_to "Return to homepage", login_path %>
+		</div>
+</div>

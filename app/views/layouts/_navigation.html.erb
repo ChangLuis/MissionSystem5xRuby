@@ -1,0 +1,33 @@
+<div class="container-fluid">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-light">
+		<%= link_to "MissionSystem", login_path, class: "navbar-brand", id: "logo" %>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto"></ul>
+			<ul class="navbar-nav justify-content-end user-message">
+			<% if logged_in? %>
+				<span class="navbar-text" id="display-user-name">
+					Current : <%= current_user.name %>
+				</span>
+				<li class="nav-item">
+          <%= link_to 'Edit Profile',
+              edit_admin_user_path(current_user),
+              class: "nav-link" if current_user.is_admin?
+          %>
+				</li>
+        <li class="nav-item">
+          <%= link_to 'Delete Account', admin_user_path(current_user),
+              method: :delete, class: "nav-link",data: {confirm: "are you sure?" } if current_user.is_admin?
+          %>
+        </li>
+				<li class="nav-item">
+						<%= link_to 'Log out', logout_path, method: :delete, class: "nav-link", id: "logout" %>
+				</li>
+			<% end %>
+			</ul>
+		</div>
+	</nav>
+</div>

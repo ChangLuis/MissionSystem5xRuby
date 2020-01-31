@@ -1,0 +1,33 @@
+<div class="form-group row" id="admin-users-title-fixed">
+	<div	class="col-md-2 offset-md-10">
+		<span>User Counts:</span> 
+		<span style="font-size:2em"><%= obj.count %></span>
+	</div>
+</div>
+
+<table class="table table-hover table-sm shadow-none p-3 mb-5 bg-light rounded rounded-pill center text-monospace">
+  <thead>
+    <tr>
+      <th scope="col">NO.</th>
+      <th scope='col'><%= t "user.account" %></th> 
+      <th scope='col'><%= t "user.name" %></th> 
+      <th scope='col'><%= t "user.missions_count" %></th>
+			<th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+		<% obj.each.with_index(1) do |user, idx| %>
+      <tr onclick="location.href='<%= admin_user_path(user.id)%>'">
+        <td scope="row"><%= idx %></td>
+        <td><%= user.account %></td>
+        <td><%= user.name %></td>
+        <td><%= user.missions.count %></td>
+        <td><%= link_to 'delete', admin_user_path(user),
+                method: :delete, data: {confirm: "are you sure?" },
+                class: "badge badge-pill badge-warning"
+            %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

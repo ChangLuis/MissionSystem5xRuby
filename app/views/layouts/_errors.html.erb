@@ -1,0 +1,16 @@
+<% if obj.errors.any? %>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card border-danger mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+        <h5 class="card-header"><%= pluralize(obj.errors.count, "Error Message")%></h5>
+        <div class="card-body text-danger">
+          <ul class="card-text list-group list-group-flush">
+            <% obj.errors.full_messages.each do |msg| %>
+              <li class="list-group-item "><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

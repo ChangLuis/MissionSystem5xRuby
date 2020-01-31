@@ -1,11 +1,25 @@
-<h1>MissionSystem5xRuby</h1>
+<div class="jumbotron">
+	<h1 class="display-3">Mission System 5xRuby</h1>
 
-<%= form_with scope: :login, local: true do |f| %>
-  <%= f.label :account %>
-  <%= f.text_field :account %>
+  <%= form_with scope: :login, local: true do |f| %>
+    <div class="form-group row" style="margin-top: 50px">
+      <div class="col-md-6 offset-md-3">
+        <%= f.text_field :account, placeholder: "Account", class: "form-control form-control-md" %>
+      </div>
+    </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+    <div class="form-group row">
+      <div class="col-md-6 offset-md-3">
+        <%= f.password_field :password, placeholder: "Password",
+          class: "form-control form-control-md"
+        %>
+      </div>
+    </div>
 
-  <%= f.submit %>
-<% end %>
+    <div class="form-group row align-items-center text-monospace">
+      <div class="col-auto offset-md-5">
+        <%= f.submit "Login", class: "btn btn-outline-light btn-md btn-change-color rounded-pill mt-3 ml-4", data: { disable_with: "Confirming..." } %>
+      </div>
+    </div>
+  <% end %>
+</div>

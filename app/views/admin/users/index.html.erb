@@ -1,37 +1,10 @@
-<h1>User list</h1>
+<div class="row center">
+	<h1 class="col-sm-3 offset-sm-4">Users List</h1>
+	<div class="col-sm-2 offset-sm-2">
+		<%= button_to "add New user", new_admin_user_path, method: :get,
+			class: "btn btn-outline-primary rounded-pill text-monospace", style: "margin-top:11px" %>
+	</div>
+</div>
 
-<%= link_to 'logout', logout_path, method: :delete %>
-<%= link_to 'create new user', new_admin_user_path %>
-<table>
-  <tr>
-    <th><%= "NO." %></th>
-    <th><%= t "user.account" %></th> 
-    <th><%= t "user.name" %></th> 
-    <th><%= t "user.missions_count" %></th>
-  </tr>
-  <% @users.each.with_index(1) do |user, idx| %>
-    <tr onclick="location.href='<%= admin_user_path(user.id)%>'">
-      <td><%= idx %></td>
-      <td><%= user.account %></td>
-      <td><%= user.name %></td>
-      <td><%= user.missions.count %></td>
-      <td><%= link_to 'delete', admin_user_path(user), method: :delete, data: {confirm: "are you sure?" } %></td>
-    </tr>
-  <% end %>
-</table><br>
-
-<table>
-  <tr>
-    <th><%= "NO." %></th>
-    <th><%= t "user.account" %></th> 
-    <th><%= t "user.name" %></th> 
-  </tr>
-  <% @admins.each.with_index(1) do |admin, idx| %>
-    <tr>
-      <td><%= idx %></td>
-      <td><%= admin.account %></td>
-      <td><%= admin.name %></td>
-      <td><%= link_to 'delete', admin_user_path(admin), method: :delete, data: {confirm: "are you sure?" } %></td>
-    </tr>
-  <% end %>
-</table>
+<%= render 'index_user', obj: @users %>
+<%= render 'index_admin', obj: @admins %>

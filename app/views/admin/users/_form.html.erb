@@ -1,0 +1,61 @@
+<%= form_with model: @user, url: obj, class: "text-monospace", local: true do |f| %>
+  <div class="form-group">
+		<%= f.label :account, class: "col-md-1 col-form-label offset-md-2" %>
+		<div class="col-md-8 offset-md-2">
+		  <%= f.text_field :account, placeholder: "Account must exist", class: "form-control shadow p-3 mb-3 bg-white rounded" %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :name, class: "col-md-1 col-form-label offset-md-2" %>
+		<div class="col-md-8 offset-md-2">
+		  <%= f.text_field :name, placeholder: "Username must exist", class: "form-control shadow p-3 mb-3 bg-white rounded" %>
+		</div>
+	</div>
+    
+  <div class="form-group">
+		<%= f.label :password, class: "col-md-1 col-form-label offset-md-2" %>
+		<div class="col-md-8 offset-md-2">
+		  <%= f.password_field :password, placeholder: diff_message, class: "form-control shadow p-3 mb-3 bg-white rounded" %>
+		</div>
+    <small class="form-text text-muted d-flex justify-content-center offset-md-1">
+			Your password must be 8-20 characters long, contain letters or numbers, and must not contain spaces, special characters.
+		</small>
+	</div>
+
+  <div class="form-group">
+		<%= f.label :password_confirmation, class: "col-md-3 col-form-label offset-md-2 text-monospace" %>
+		<div class="col-md-8 offset-md-2">
+			<%= f.password_field :password_confirmation,
+			  placeholder: diff_message,class: "form-control shadow p-3 mb-3 bg-white rounded" 
+			%>
+		</div>
+	</div>
+
+	<fieldset class="form-group">
+		<div class="row">
+			<legend class="col-form-label col-md-1 pt-2 offset-md-2" id="legend-label">Admin?</legend>
+			<div class="col-md-2">
+				<div class="form-check">
+					<%= f.radio_button :is_admin, true, class: "form-check-input" %>
+					<%= f.label :is_admin, "Yes", class: "form-check-label" %>
+				</div>
+
+				<div class="form-check">
+					<%= f.radio_button :is_admin, false, checked: true, class: "form-check-input" %>
+					<%= f.label :is_admin, "No", class: "form-check-label" %>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="form-group row row align-items-center d-flex justify-content-center">
+		<div class="col-auto">
+    	<%= f.submit class: "btn btn-primary rounded-pill", data: { disable_with: "Confirming..." }%>
+		</div>
+	</div>
+<% end %>
+
+<div class="form-group row align-items-center d-flex justify-content-center text-monospace">
+	<%= link_to "Cancel request and Return to Users page", login_path,	class: "col-auto mt-2"	%>
+</div>

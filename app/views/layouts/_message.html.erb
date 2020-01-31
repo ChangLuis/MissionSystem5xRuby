@@ -1,5 +1,9 @@
-<% flash.each do |name, msg| %>
-  <ul>
-    <li><%= msg %></li>
-  </ul>   
-<% end%>
+<div class="row margin-fixed">
+	<div class="col-md-8 offset-md-2">
+		<% flash.each do |_, msg| %>
+				<div class="alert alert-info center" role="alert" id="fade-out-target">
+					<%= msg %>
+				</div>
+		<% end %>
+	</div>
+</div>

@@ -1,24 +1,43 @@
-<h1><%= t "mission.file_detail" %></h1>
+<h1 class="center"><%= t "mission.file_detail" %></h1><br>
 
-<p>Title: <%= @mission.title %></p>
 
-<p>Contents: <%= @mission.contents %></p>
+<h4>Title:</h4>
+<input class="form-control" type="text" placeholder=<%= @mission.title %> readonly>
+<br>
+<h4>Contents:</h4>
+<input class="form-control" type="text" placeholder=<%= @mission.contents %> readonly>
+<br>
+<h4>Status:</h4>
+<input class="form-control" type="text" placeholder=<%= @mission.status %> readonly>
+<br>
+<h4>Priority:</h4>
+<input class="form-control" type="text" placeholder=<%= @mission.priority_order %> readonly>
+<br>
+<h4>Inintial_time:</h4>
+<input class="form-control" type="text" placeholder=<%= @mission.initial_time_at %> readonly>
+<br>
+<h4>Finish_time:</h4>
+<input class="form-control" type="text" placeholder=<%= @mission.finish_time_at %> readonly>
+<br>
 
-<p>Status: <%= @mission.status %></p>
+<div class="form-group row align-items-center text-monospace">
+    <div class="col-auto offset-md-4">
+      <%= button_to t("mission.edit.btn"), edit_user_mission_path(params[:id]),
+          method: :get,
+          class: "btn btn-outline-primary rounded-pill mt-2"
+      %>
+    </div>
 
-<p>Priority: <%= @mission.priority_order %></p>
+    <div class="col-auto">
+      <%= link_to t("mission.destroy.btn"), user_mission_path,
+          method: :delete, data: { confirm: "Are you sure?" },
+          class: "btn btn-outline-danger rounded-pill mt-2"
+      %>
+    </div>
 
-<p>initial_time: <%= format_datetime(@mission.initial_time_at) %></p>
-
-<p>finish_time: <%= format_datetime(@mission.finish_time_at) %></p>
-
-<p><%= link_to t("mission.edit.btn"), edit_user_mission_path(params[:id]) %></p>
-
-<p>
-  <%= 
-    link_to t("mission.destroy.btn"), user_mission_path,
-    method: :delete, data: { confirm: "Are you sure?" }
-  %>
-</p>
-
-<p><%= link_to t("mission.review_all"), user_missions_path %></p>
+    <div class="col-auto">
+      <%= button_to t("mission.review_all"), user_missions_path, method: :get,
+          class: "btn btn-outline-info rounded-pill mt-2"
+      %>
+    </div>
+</div>
