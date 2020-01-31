@@ -25,6 +25,6 @@ class LoginController < ApplicationController
   end
 
   def role_direct
-    current_user.is_admin? ? admin_root_path : user_missons_path
+    current_user.is_admin? ? admin_root_path : user_missions_path
   end
 end
