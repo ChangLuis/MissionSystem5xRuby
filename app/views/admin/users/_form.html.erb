@@ -31,23 +31,24 @@
 			%>
 		</div>
 	</div>
+	<% unless @user.is_admin? %>
+		<fieldset class="form-group">
+			<div class="row">
+				<legend class="col-form-label col-md-1 pt-2 offset-md-2" id="legend-label">Admin?</legend>
+				<div class="col-md-2">
+					<div class="form-check">
+						<%= f.radio_button :is_admin, true, class: "form-check-input" %>
+						<%= f.label :is_admin, "Yes", class: "form-check-label" %>
+					</div>
 
-	<fieldset class="form-group">
-		<div class="row">
-			<legend class="col-form-label col-md-1 pt-2 offset-md-2" id="legend-label">Admin?</legend>
-			<div class="col-md-2">
-				<div class="form-check">
-					<%= f.radio_button :is_admin, true, class: "form-check-input" %>
-					<%= f.label :is_admin, "Yes", class: "form-check-label" %>
-				</div>
-
-				<div class="form-check">
-					<%= f.radio_button :is_admin, false, checked: true, class: "form-check-input" %>
-					<%= f.label :is_admin, "No", class: "form-check-label" %>
+					<div class="form-check">
+						<%= f.radio_button :is_admin, false, class: "form-check-input" %>
+						<%= f.label :is_admin, "No", class: "form-check-label" %>
+					</div>
 				</div>
 			</div>
-		</div>
-	</fieldset>
+		</fieldset>
+	<% end %>
 
 	<div class="form-group row row align-items-center d-flex justify-content-center">
 		<div class="col-auto">
