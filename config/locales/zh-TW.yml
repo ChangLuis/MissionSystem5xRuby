@@ -44,5 +44,6 @@
       user:
         account: 帳號
         name: 姓名
-        password_digest: 密碼
+        password: 密碼
+        password_confirmation: 確認密碼
         is_admin: 管理員身份
